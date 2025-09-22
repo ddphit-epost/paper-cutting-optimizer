@@ -1,13 +1,9 @@
 //git init
 // git add * 
 //git status
-
-// git commit -m "Initial commit" 
-
+// git commit -m "Initial commit"
 //git remote add origin https://github.com/ddphit-epost/paper-cutting-optimizer.git
-
 //git branch -M main
-
 // git push -u origin main
 
 # خطوات نشر المشروع GitHub Pages على PyCharm
