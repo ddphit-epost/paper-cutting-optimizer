@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة الطباعة وقص الورق الأمثل</title>
+    <link rel="stylesheet" href="paper_cutting_optimizer.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🖨️ حاسبة الطباعة وقص الورق الأمثل</h1>
+            <p>احسب التوزيع الأمثل للصفحات على الأفرخ وقارن التكلفة</p>
+        </div>
+
+        <!-- Input Section -->
+        <div class="grid md:grid-cols-2">
+            <!-- Product Data Card -->
+            <div class="card">
+                <h2>📄 بيانات المنتج النهائي</h2>
+                
+                <div class="grid grid-cols-3">
+                    <div class="form-group">
+                        <label for="pageLength" class="form-label">طول الصفحة (سم)</label>
+                        <input type="number" id="pageLength" value="29.7" class="form-input" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="pageWidth" class="form-label">عرض الصفحة (سم)</label>
+                        <input type="number" id="pageWidth" value="21" class="form-input" step="0.1">
+                    </div>
+                    <div class="form-group">
+                    <label for="margin" class="form-label tooltip" data-tooltip="يضاف لكل جانب من جوانب الصفحة">
+                        هامش القص (سم) ℹ️
+                    </label>
+                    <input type="number" id="margin" value="0.5" class="form-input" step="0.1">
+                    </div>
+                </div>
+
+                <div id="effectivePageSizeDisplay" class="effective-size"></div>
+
+                <hr style="margin: 25px 0; border: 1px solid #e5e7eb;">
+
+                <div class="grid grid-cols-3">
+                    <div class="form-group">
+                        <label for="numberOfPages" class="form-label">عدد صفحات المنتج</label>
+                        <input type="number" id="numberOfPages" value="100" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="numberOfCopies" class="form-label">عدد النسخ المطلوبة</label>
+                        <input type="number" id="numberOfCopies" value="50" class="form-input">
+                    </div>
+                    <div class="form-group">
+                    <label for="printType" class="form-label">نوع الطباعة</label>
+                    <select id="printType" class="form-select">
+                        <option value="singleSided">وجه واحد</option>
+                        <option value="doubleSided">وجهين</option>
+                    </select>
+                    </div>
+                </div>
+
+                <hr style="margin: 25px 0; border: 1px solid #e5e7eb;">
+
+                <div class="grid grid-cols-2">
+                    <div class="form-group">
+                        <label for="printColor" class="form-label">عدد الألوان</label>
+                        <select id="printColor" class="form-select">
+                            <option value="black">أسود</option>
+                            <option value="2-color">2 لون</option>
+                            <option value="3-color">3 لون</option>
+                            <option value="4-color">4 لون (full color)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="printPrice" class="form-label">سعر الطباعة/وجه (بالجنيه)</label>
+                        <input type="number" id="printPrice" value="0.5" class="form-input" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Raw Materials Card -->
+            <div class="card">
+                <h2>📜 بيانات أوراق الخام (الأفرخ)</h2>
+                
+                <div id="sheetsContainer"></div>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label for="presetSheetDropdown" class="form-label">إضافة مقاس شائع</label>
+                    <div style="display: flex; gap: 10px;">
+                        <select id="presetSheetDropdown" class="form-select" style="flex-grow: 1;"></select>
+                        <button id="addSelectedSheetBtn" class="btn btn-secondary">➕ إضافة</button>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin: 20px 0;">
+                    <button id="addCustomSheet" class="btn btn-success">🆕 أو إضافة مقاس مخصص</button>
+                </div>
+                
+                <div id="error-message" class="error-message hidden"></div>
+            </div>
+        </div>
+
+        <!-- Calculate Button -->
+        <div style="text-align: center; margin: 40px 0;">
+            <button id="calculateButton" class="btn btn-primary btn-large">
+                🔄 حساب التوزيع الأمثل
+            </button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsContainer" class="hidden fade-in">
+            <div class="card">
+                <h2>📊 النتائج والمقارنة</h2>
+                <div id="comparisonSummary" class="comparison-summary"></div>
+            </div>
+            
+            <div id="sheetResults" class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1"></div>
+        </div>
+    </div>
+
+    <script src="paper_cutting_optimizer.js"></script>
+</body>
+</html>
