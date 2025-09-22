@@ -4,7 +4,6 @@ class PrintCalculator {
         this.commonSizes = [
             { length: 100, width: 70, name: 'فرخ كامل' },
             { length: 88, width: 66, name: 'جاير' },
-            { length: 85, width: 60, name: 'جاير طباعي' },
             { length: 70, width: 50, name: 'نصف الفرخ' },
             { length: 50, width: 35, name: 'ربع الفرخ' },
             { length: 35, width: 25, name: 'ثمن الفرخ' }
